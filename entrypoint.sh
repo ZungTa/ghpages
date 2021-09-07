@@ -13,7 +13,11 @@ REPONAME="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 2)" && \
 OWNER="$(echo $GITHUB_REPOSITORY| cut -d'/' -f 1)" && \
 GHIO="${OWNER}.github.io" && \
 if [[ "$REPONAME" == "$GHIO" ]]; then
-  REMOTE_BRANCH="master"
+  if [ "${BRANCH}" == "" ]; then
+    REMOTE_BRANCH="master"
+  else
+    REMOTE_BRANCH="${BRANCH}"
+  fi
 else
   REMOTE_BRANCH="gh-pages"
 fi && \
